@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Unity Game</title>
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    #gameContainer, 
+    canvas {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    #gameContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/paigerodeghero/academicwebsite@897c910c65e6c68b04c44a6b6eba0b99d0f2f2cf/TemplateData/style.css">
+<script src="https://cdn.jsdelivr.net/gh/paigerodeghero/academicwebsite@897c910c65e6c68b04c44a6b6eba0b99d0f2f2cf/TemplateData/UnityProgress.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/udbsite/adofai@f170efcb1b532312817e69f26ce3f84c99940238/Build/UnityLoader.js"></script>
+
+</head>
+<body>
+
+<div id="gameContainer"></div>
+
+<script>
+var gameInstance = UnityLoader.instantiate(
+    "gameContainer",
+    "https://cdn.jsdelivr.net/gh/udbsite/adofai@f170efcb1b532312817e69f26ce3f84c99940238/Build/adofaiii4.json",
+    {
+        onProgress: UnityProgress,
+        Module: {
+            onRuntimeInitialized: function() {
+                UnityProgress(gameInstance, "complete");
+            }
+        }
+    }
+);
+
+// Force Unity canvas to resize with iframe
+window.addEventListener("resize", function () {
+    const canvas = document.querySelector("#gameContainer canvas");
+    if (canvas) {
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+    }
+});
+</script>
+
+</body>
+</html>

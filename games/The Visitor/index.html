@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #game-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Ensures Ruffle or embed scales properly */
+        #game-container object, #game-container embed, #game-container ruffle-player {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        #fullscreen-btn {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            padding: 10px 16px;
+            font-size: 14px;
+            border: none;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            z-index: 9999;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/gh/u-cvlassrom-y/google@main/ruffle.js"></script>
+</head>
+<body>
+
+<div id="game-container">
+    <object id="flash-object">
+        <param name="movie" value="REPLACE">
+        <embed src="https://cdn.jsdelivr.net/gh/Stinkalistic/UGS@main/SWFs/visitor.swf"></embed>
+    </object>
+</div>
+
+<button id="fullscreen-btn">Fullscreen</button>
+
+<script>
+    const container = document.getElementById("game-container");
+    const fsBtn = document.getElementById("fullscreen-btn");
+
+    fsBtn.addEventListener("click", () => {
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        } else {
+            container.requestFullscreen().catch(err => console.log(err));
+        }
+    });
+</script>
+
+</body>
+</html>
